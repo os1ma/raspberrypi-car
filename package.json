@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/os1ma/raspberrypi-car.git",
   "author": "Yuki Oshima <39944763+os1ma@users.noreply.github.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "rpio": "^2.4.2"
+  }
 }
