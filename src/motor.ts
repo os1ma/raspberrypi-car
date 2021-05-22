@@ -12,7 +12,7 @@ const ACCELERATION_STOP_COUNT = 4;
 // 周波数。8 は 2.4 MHz
 const CLOCK_DIVIDER = 8;
 
-export default class Motor {
+export default class PWMMotor {
   protected pwmValue: number;
 
   constructor(protected pin: number) {
@@ -61,7 +61,7 @@ export default class Motor {
   }
 }
 
-export class DummyMotor extends Motor {
+export class DummyMotor extends PWMMotor {
   constructor() {
     // ダミーとして 0 を代入
     super(0);

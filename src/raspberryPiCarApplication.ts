@@ -1,25 +1,12 @@
 import Car from "./car";
+import { CarFactory } from "./carFactory";
 import { ControllerCommand, ControllerPort } from "./keyboardController";
-import { default as Motor, DummyMotor } from "./motor";
-
-const PINS = {
-  // GPIO 18
-  frontRightPin: 12,
-  frontLeftPin: null,
-  backRightPin: null,
-  backLeftPin: null,
-};
 
 export default class RaspberryPiCarApplication {
   private car: Car;
 
-  constructor(private controller: ControllerPort) {
-    this.car = new Car(
-      new Motor(PINS.frontRightPin),
-      new DummyMotor(),
-      new DummyMotor(),
-      new DummyMotor()
-    );
+  constructor(private controller: ControllerPort, carFactory: CarFactory) {
+    this.car = carFactory.create();
   }
 
   run() {
