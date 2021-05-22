@@ -1,5 +1,5 @@
 import Car from "./car";
 
-export interface CarFactory {
+export default interface CarFactory {
   create(): Car;
 }
