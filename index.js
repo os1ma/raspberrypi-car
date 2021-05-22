@@ -1,8 +1,7 @@
+const keypress = require("keypress");
+
 const motor = require("./src/motor");
 const Car = require("./src/car").Car;
-
-// 何秒ごとに処理するか
-const INTERVAL_SEC = 1;
 
 const PINS = {
   // GPIO 18
@@ -22,16 +21,43 @@ function main() {
     new motor.DummyMotor(PINS.backLeftPin)
   );
 
-  const intervalObject = setInterval(() => {
-    car.goStraight();
-  }, INTERVAL_SEC * 1000);
+  keypress(process.stdin);
+  process.stdin.on("keypress", (ch, key) => {
+    console.log(`[keypress] ch = ${ch}, key = ${key}`);
+
+    if (!key) {
+      return;
+    }
+
+    // Ctrl + C
+    if (key.ctrl && key.name == "c") {
+      console.log("Ctrl + C handling...");
+      car.cleanUp();
+      process.exit();
+    }
+
+    switch (key.name) {
+      case "up":
+        car.goStraight();
+        break;
+      case "down":
+        car.stop();
+        break;
+      case "right":
+        car.goRight();
+        break;
+      case "left":
+        car.goLeft();
+        break;
+    }
+  });
+
+  process.stdin.setRawMode(true);
+  process.stdin.resume();
 
   STOP_SIGNALS.forEach((signal) => {
     process.on(signal, () => {
       console.log(`Received ${signal} at " + ${new Date()}`);
-
-      clearInterval(intervalObject);
-
       car.cleanUp();
     });
   });
