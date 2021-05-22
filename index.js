@@ -1,4 +1,5 @@
-const Motor = require("./src/motor").Motor;
+const motor = require("./src/motor");
+const Car = require("./src/car").Car;
 
 // 何秒ごとに処理するか
 const INTERVAL_SEC = 1;
@@ -6,34 +7,32 @@ const INTERVAL_SEC = 1;
 const PINS = {
   // GPIO 18
   frontRightPin: 12,
-  // TODO
-  // frontLeftPin: 0,
-  // TODO
-  // backRightPin: 0,
-  // TODO
-  // backLeftPin: 0,
+  frontLeftPin: null,
+  backRightPin: null,
+  backLeftPin: null,
 };
 
 const STOP_SIGNALS = ["SIGTERM", "SIGINT"];
 
 function main() {
-  const motors = Object.values(PINS).map((pin) => {
-    return new Motor(pin);
-  });
+  const car = new Car(
+    new motor.Motor(PINS.frontRightPin),
+    new motor.DummyMotor(PINS.frontLeftPin),
+    new motor.DummyMotor(PINS.backRightPin),
+    new motor.DummyMotor(PINS.backLeftPin)
+  );
 
   const intervalObject = setInterval(() => {
-    motors.forEach((motor) => {
-      motor.accelerate();
-    });
+    car.goStraight();
   }, INTERVAL_SEC * 1000);
 
   STOP_SIGNALS.forEach((signal) => {
     process.on(signal, () => {
       console.log(`Received ${signal} at " + ${new Date()}`);
-      motors.forEach((motor) => {
-        motor.close();
-      });
+
       clearInterval(intervalObject);
+
+      car.cleanUp();
     });
   });
 }
