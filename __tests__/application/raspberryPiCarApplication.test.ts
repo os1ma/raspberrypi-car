@@ -3,10 +3,10 @@ import RaspberryPiCarApplication from "./../../src/application/raspberryPiCarApp
 import DummyController from "./../../src/presentation/dummyController";
 
 test("ダミーアプリケーションの起動", () => {
-  const controlelr = new DummyController();
+  const controller = new DummyController();
   const carFactory = new DummyMotorCarFactory();
 
-  const app = new RaspberryPiCarApplication(controlelr, carFactory);
+  const app = new RaspberryPiCarApplication(controller, carFactory);
   app.run();
   app.cleanUp();
 });

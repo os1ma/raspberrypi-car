@@ -3,10 +3,10 @@ import DummyMotorCarFactory from "./infrastructure/dummy/dummyMotorCarFactory";
 import logger from "./logger";
 import KeyboardController from "./presentation/keyboardController";
 
-const controlelr = new KeyboardController();
+const controller = new KeyboardController();
 const carFactory = new DummyMotorCarFactory();
 
-const app = new RaspberryPiCarApplication(controlelr, carFactory);
+const app = new RaspberryPiCarApplication(controller, carFactory);
 app.run();
 
 ["SIGTERM", "SIGINT"].forEach((signal) => {
