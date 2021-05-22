@@ -2,6 +2,23 @@
 # yarn lockfile v1
 
 
+"@types/keypress@^2.0.30":
+  version "2.0.30"
+  resolved "https://registry.yarnpkg.com/@types/keypress/-/keypress-2.0.30.tgz#b55c4f63b58970b30c7b8cb63f25af14a3dbda8d"
+  integrity sha512-PCS6Mrv4gbQ9167E25nuVmqerT4xM/zWuVFTLfHdQgBwmsfMj2kXR1DI3qZ5N3p21gbrPweRghci2CjMHRCWkA==
+
+"@types/node@*":
+  version "15.6.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.6.0.tgz#f0ddca5a61e52627c9dcb771a6039d44694597bc"
+  integrity sha512-gCYSfQpy+LYhOFTKAeE8BkyGqaxmlFxe+n4DKM6DR0wzw/HISUE/hAmkC/KT8Sw5PCJblqg062b3z9gucv3k0A==
+
+"@types/rpio@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@types/rpio/-/rpio-2.4.1.tgz#36852780acaaa4b2986a87b55ba65133b53b2c84"
+  integrity sha512-w2r7DWV7qy6tzsAchE/dXNnHM7M8czHlamIExttaXqsaVFgLThVIxaD303As3cS/kbQdb4FR3JOBTl/A6rfRNw==
+  dependencies:
+    "@types/node" "*"
+
 bindings@~1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.5.0.tgz#10353c9e945334bc0511a6d90b38fbc7c9c504df"

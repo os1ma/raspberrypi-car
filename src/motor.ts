@@ -1,4 +1,4 @@
-const rpio = require("rpio");
+import rpio from "rpio";
 
 // 最大のパルス幅
 const MAX_SPEED_VALUE = 128;
@@ -11,8 +11,11 @@ const ACCELERATION_STOP_COUNT = 4;
 // 周波数。8 は 2.4 MHz
 const CLOCK_DIVIDER = 8;
 
-class Motor {
-  constructor(pin) {
+export default class Motor {
+  protected pin: number;
+  protected pwmValue: number;
+
+  constructor(pin: number) {
     this.pin = pin;
     this.pwmValue = 0;
 
@@ -27,9 +30,11 @@ class Motor {
   }
 
   accelerate() {
-    if (this.pwmValue < MAX_SPEED_VALUE) {
-      pwmValue = this.pwmValue + MAX_SPEED_VALUE / ACCELERATION_STOP_COUNT;
+    if (this.pwmValue >= MAX_SPEED_VALUE) {
+      return;
     }
+
+    const pwmValue = this.pwmValue + MAX_SPEED_VALUE / ACCELERATION_STOP_COUNT;
     this.changeSpeed(pwmValue);
   }
 
@@ -45,7 +50,7 @@ class Motor {
     this.changeSpeed(STOP_SPEED_VALUE);
   }
 
-  changeSpeed(pwdValue) {
+  changeSpeed(pwdValue: number) {
     this.pwmValue = pwdValue;
     console.log(`PIN[${this.pin}] pwmValue = ${this.pwmValue}`);
     rpio.pwmSetData(this.pin, this.pwmValue);
@@ -57,11 +62,15 @@ class Motor {
   }
 }
 
-class DummyMotor extends Motor {
+export class DummyMotor extends Motor {
+  constructor() {
+    // ダミーとして 0 を代入
+    super(0);
+  }
   initialize() {
     // Do nothing
   }
-  changeSpeed(pwdValue) {
+  changeSpeed(pwdValue: number) {
     this.pwmValue = pwdValue;
     console.log(`PIN[${this.pin}] pwmValue = ${this.pwmValue}`);
   }
@@ -69,6 +78,3 @@ class DummyMotor extends Motor {
     // Do nothing
   }
 }
-
-module.exports.Motor = Motor;
-module.exports.DummyMotor = DummyMotor;

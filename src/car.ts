@@ -1,5 +1,17 @@
-class Car {
-  constructor(frontRightMotor, frontLeftMotor, backRightMotor, backLeftMotor) {
+import Motor from "./motor";
+
+export default class Car {
+  private frontRightMotor: Motor;
+  private frontLeftMotor: Motor;
+  private backRightMotor: Motor;
+  private backLeftMotor: Motor;
+
+  constructor(
+    frontRightMotor: Motor,
+    frontLeftMotor: Motor,
+    backRightMotor: Motor,
+    backLeftMotor: Motor
+  ) {
     this.frontRightMotor = frontRightMotor;
     this.frontLeftMotor = frontLeftMotor;
     this.backRightMotor = backRightMotor;
@@ -41,5 +53,3 @@ class Car {
     this.backLeftMotor.cleanUp();
   }
 }
-
-module.exports.Car = Car;

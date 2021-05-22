@@ -1,7 +1,7 @@
-const keypress = require("keypress");
-
-const motor = require("./motor");
-const Car = require("./car").Car;
+// @ts-ignore
+import keypress from "keypress";
+import Car from "./car";
+import { default as Motor, DummyMotor } from "./motor";
 
 const PINS = {
   // GPIO 18
@@ -15,10 +15,10 @@ const STOP_SIGNALS = ["SIGTERM", "SIGINT"];
 
 function main() {
   const car = new Car(
-    new motor.Motor(PINS.frontRightPin),
-    new motor.DummyMotor(PINS.frontLeftPin),
-    new motor.DummyMotor(PINS.backRightPin),
-    new motor.DummyMotor(PINS.backLeftPin)
+    new Motor(PINS.frontRightPin),
+    new DummyMotor(),
+    new DummyMotor(),
+    new DummyMotor()
   );
 
   keypress(process.stdin);
