@@ -1,21 +1,13 @@
 // @ts-ignore
 import keypress from "keypress";
+import {
+  ControllerCommand,
+  ControllerPort,
+} from "./application/raspberryPiCarApplication";
 import logger from "./logger";
 
-export enum ControllerCommand {
-  GoStraight,
-  Stop,
-  GoRight,
-  GoLeft,
-  CleanUp,
-}
-
-export interface ControllerPort {
-  setup(onInput: (command: ControllerCommand) => void): void;
-}
-
 export class KeyboardController implements ControllerPort {
-  setup(onInput: (command: ControllerCommand) => void) {
+  enable(onInput: (command: ControllerCommand) => void) {
     keypress(process.stdin);
 
     process.stdin.on("keypress", (ch, key) => {

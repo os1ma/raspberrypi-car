@@ -1,6 +1,5 @@
-import Car from "./car";
-import { CarFactory } from "./carFactory";
-import { ControllerCommand, ControllerPort } from "./keyboardController";
+import Car from "../car";
+import { CarFactory } from "../carFactory";
 
 export default class RaspberryPiCarApplication {
   private car: Car;
@@ -10,7 +9,7 @@ export default class RaspberryPiCarApplication {
   }
 
   run() {
-    this.controller.setup((command) => {
+    this.controller.enable((command) => {
       switch (command) {
         case ControllerCommand.GoStraight:
           this.car.goStraight();
@@ -28,8 +27,7 @@ export default class RaspberryPiCarApplication {
           this.car.cleanUp();
           process.exit();
         default:
-          // TODO ちゃんと実装
-          throw new Error();
+          throw new Error(`Unexpected command: ${command}`);
       }
     });
   }
@@ -37,4 +35,18 @@ export default class RaspberryPiCarApplication {
   cleanUp() {
     this.car.cleanUp();
   }
+}
+
+// このアプリケーションが要求するコントローラの定義
+
+export interface ControllerPort {
+  enable(onInput: (command: ControllerCommand) => void): void;
+}
+
+export enum ControllerCommand {
+  GoStraight,
+  Stop,
+  GoRight,
+  GoLeft,
+  CleanUp,
 }
