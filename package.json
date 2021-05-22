@@ -8,5 +8,8 @@
   "dependencies": {
     "keypress": "^0.2.1",
     "rpio": "^2.4.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
   }
 }

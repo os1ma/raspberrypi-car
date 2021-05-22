@@ -1,7 +1,7 @@
 const keypress = require("keypress");
 
-const motor = require("./src/motor");
-const Car = require("./src/car").Car;
+const motor = require("./motor");
+const Car = require("./car").Car;
 
 const PINS = {
   // GPIO 18
