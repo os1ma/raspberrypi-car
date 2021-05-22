@@ -6,7 +6,7 @@ import {
 } from "../application/raspberryPiCarApplication";
 import logger from "../logger";
 
-export class KeyboardController implements ControllerPort {
+export default class KeyboardController implements ControllerPort {
   enable(onInput: (command: ControllerCommand) => void) {
     keypress(process.stdin);
 
