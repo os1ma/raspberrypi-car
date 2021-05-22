@@ -563,11 +563,6 @@
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
 
-"@types/keypress@^2.0.30":
-  version "2.0.30"
-  resolved "https://registry.yarnpkg.com/@types/keypress/-/keypress-2.0.30.tgz#b55c4f63b58970b30c7b8cb63f25af14a3dbda8d"
-  integrity sha512-PCS6Mrv4gbQ9167E25nuVmqerT4xM/zWuVFTLfHdQgBwmsfMj2kXR1DI3qZ5N3p21gbrPweRghci2CjMHRCWkA==
-
 "@types/node@*":
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-15.6.0.tgz#f0ddca5a61e52627c9dcb771a6039d44694597bc"
