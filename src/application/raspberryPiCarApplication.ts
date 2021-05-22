@@ -24,7 +24,7 @@ export default class RaspberryPiCarApplication {
           this.car.goLeft();
           break;
         case ControllerCommand.CleanUp:
-          this.car.cleanUp();
+          this.cleanUp();
           process.exit();
         default:
           throw new Error(`Unexpected command: ${command}`);
