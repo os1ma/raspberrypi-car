@@ -1,4 +1,3 @@
-const rpio = require("rpio");
 const car = require("./src/car");
 
 // 何秒ごとに処理するか
@@ -15,24 +14,28 @@ const PINS = {
   // backLeftPin: 0,
 };
 
-const motors = Object.values(PINS).map((pin) => {
-  return new car.Motor(pin);
-});
-
-const intervalObject = setInterval(() => {
-  motors.forEach((motor) => {
-    motor.accelerate();
-  });
-}, INTERVAL_SEC * 1000);
-
 const STOP_SIGNALS = ["SIGTERM", "SIGINT"];
 
-STOP_SIGNALS.forEach((signal) => {
-  process.on(signal, () => {
-    console.log(`Received ${signal} at " + ${new Date()}`);
-    motors.forEach((motor) => {
-      motor.close();
-    });
-    clearInterval(intervalObject);
+function main() {
+  const motors = Object.values(PINS).map((pin) => {
+    return new car.Motor(pin);
   });
-});
+
+  const intervalObject = setInterval(() => {
+    motors.forEach((motor) => {
+      motor.accelerate();
+    });
+  }, INTERVAL_SEC * 1000);
+
+  STOP_SIGNALS.forEach((signal) => {
+    process.on(signal, () => {
+      console.log(`Received ${signal} at " + ${new Date()}`);
+      motors.forEach((motor) => {
+        motor.close();
+      });
+      clearInterval(intervalObject);
+    });
+  });
+}
+
+main();
