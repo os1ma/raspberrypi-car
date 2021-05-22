@@ -71,7 +71,7 @@ export class DummyMotor extends Motor {
   }
   changeSpeed(pwdValue: number) {
     this.pwmValue = pwdValue;
-    logger.info(`PIN[${this.pin}] pwmValue = ${this.pwmValue}`);
+    logger.info(`PIN[DUMMY] pwmValue = ${this.pwmValue}`);
   }
   cleanUp() {
     // Do nothing

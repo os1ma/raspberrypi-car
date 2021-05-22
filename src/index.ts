@@ -24,7 +24,7 @@ function main() {
 
   keypress(process.stdin);
   process.stdin.on("keypress", (ch, key) => {
-    logger.info(`[keypress] ch = ${ch}, key = ${key}`);
+    logger.info(`[keypress] ch = ${ch}, key = ${JSON.stringify(key)}`);
 
     if (!key) {
       return;
@@ -58,7 +58,7 @@ function main() {
 
   STOP_SIGNALS.forEach((signal) => {
     process.on(signal, () => {
-      logger.info(`Received ${signal} at " + ${new Date()}`);
+      logger.info(`Received ${signal}`);
       car.cleanUp();
     });
   });
