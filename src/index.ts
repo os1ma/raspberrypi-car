@@ -1,6 +1,7 @@
 // @ts-ignore
 import keypress from "keypress";
 import Car from "./car";
+import logger from "./logger";
 import { default as Motor, DummyMotor } from "./motor";
 
 const PINS = {
@@ -23,7 +24,7 @@ function main() {
 
   keypress(process.stdin);
   process.stdin.on("keypress", (ch, key) => {
-    console.log(`[keypress] ch = ${ch}, key = ${key}`);
+    logger.info(`[keypress] ch = ${ch}, key = ${key}`);
 
     if (!key) {
       return;
@@ -31,7 +32,7 @@ function main() {
 
     // Ctrl + C
     if (key.ctrl && key.name == "c") {
-      console.log("Ctrl + C handling...");
+      logger.info("Ctrl + C handling...");
       car.cleanUp();
       process.exit();
     }
@@ -57,7 +58,7 @@ function main() {
 
   STOP_SIGNALS.forEach((signal) => {
     process.on(signal, () => {
-      console.log(`Received ${signal} at " + ${new Date()}`);
+      logger.info(`Received ${signal} at " + ${new Date()}`);
       car.cleanUp();
     });
   });

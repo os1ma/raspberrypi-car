@@ -1,4 +1,5 @@
 import rpio from "rpio";
+import logger from "./logger";
 
 // 最大のパルス幅
 const MAX_SPEED_VALUE = 128;
@@ -21,7 +22,7 @@ export default class Motor {
   }
 
   initialize() {
-    console.log(`PIN[${this.pin}] initializing...`);
+    logger.info(`PIN[${this.pin}] initializing...`);
     rpio.open(this.pin, rpio.PWM);
     rpio.pwmSetClockDivider(CLOCK_DIVIDER);
     rpio.pwmSetRange(this.pin, MAX_SPEED_VALUE);
@@ -50,7 +51,7 @@ export default class Motor {
 
   changeSpeed(pwdValue: number) {
     this.pwmValue = pwdValue;
-    console.log(`PIN[${this.pin}] pwmValue = ${this.pwmValue}`);
+    logger.info(`PIN[${this.pin}] pwmValue = ${this.pwmValue}`);
     rpio.pwmSetData(this.pin, this.pwmValue);
   }
 
@@ -70,7 +71,7 @@ export class DummyMotor extends Motor {
   }
   changeSpeed(pwdValue: number) {
     this.pwmValue = pwdValue;
-    console.log(`PIN[${this.pin}] pwmValue = ${this.pwmValue}`);
+    logger.info(`PIN[${this.pin}] pwmValue = ${this.pwmValue}`);
   }
   cleanUp() {
     // Do nothing
