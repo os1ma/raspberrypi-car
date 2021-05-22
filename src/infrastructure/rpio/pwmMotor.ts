@@ -13,7 +13,7 @@ export default class PWMMotor implements Motor {
   protected pwmValue: number;
 
   constructor(protected pin: number) {
-    this.pwmValue = 0;
+    this.pwmValue = STOP_SPEED_VALUE;
 
     logger.info(`PIN[${this.pin}] initializing...`);
     this.initializeRpio();
