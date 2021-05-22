@@ -1,5 +1,5 @@
 import { DummyMotorCarFactory } from "./carFactory";
-import { KeyboardController } from "./keyboardController";
+import { KeyboardController } from "./presentation/keyboardController";
 import logger from "./logger";
 import RaspberryPiCarApplication from "./application/raspberryPiCarApplication";
 
