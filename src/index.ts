@@ -1,6 +1,9 @@
-// @ts-ignore
-import keypress from "keypress";
 import Car from "./car";
+import {
+  ControllerCommand,
+  ControllerPort,
+  KeyboardController,
+} from "./keyboardController";
 import logger from "./logger";
 import { default as Motor, DummyMotor } from "./motor";
 
@@ -14,54 +17,48 @@ const PINS = {
 
 const STOP_SIGNALS = ["SIGTERM", "SIGINT"];
 
-function main() {
-  const car = new Car(
-    new Motor(PINS.frontRightPin),
-    new DummyMotor(),
-    new DummyMotor(),
-    new DummyMotor()
-  );
+class RaspberryPiCarApplication {
+  constructor(private controller: ControllerPort) {}
 
-  keypress(process.stdin);
-  process.stdin.on("keypress", (ch, key) => {
-    logger.info(`[keypress] ch = ${ch}, key = ${JSON.stringify(key)}`);
+  run() {
+    const car = new Car(
+      new Motor(PINS.frontRightPin),
+      new DummyMotor(),
+      new DummyMotor(),
+      new DummyMotor()
+    );
 
-    if (!key) {
-      return;
-    }
-
-    // Ctrl + C
-    if (key.ctrl && key.name == "c") {
-      logger.info("Ctrl + C handling...");
-      car.cleanUp();
-      process.exit();
-    }
-
-    switch (key.name) {
-      case "up":
-        car.goStraight();
-        break;
-      case "down":
-        car.stop();
-        break;
-      case "right":
-        car.goRight();
-        break;
-      case "left":
-        car.goLeft();
-        break;
-    }
-  });
-
-  process.stdin.setRawMode(true);
-  process.stdin.resume();
-
-  STOP_SIGNALS.forEach((signal) => {
-    process.on(signal, () => {
-      logger.info(`Received ${signal}`);
-      car.cleanUp();
+    this.controller.setup((command) => {
+      switch (command) {
+        case ControllerCommand.GoStraight:
+          car.goStraight();
+          break;
+        case ControllerCommand.Stop:
+          car.stop();
+          break;
+        case ControllerCommand.GoRight:
+          car.goRight();
+          break;
+        case ControllerCommand.GoLeft:
+          car.goLeft();
+          break;
+        case ControllerCommand.CleanUp:
+          car.cleanUp();
+          process.exit();
+        default:
+          // TODO ちゃんと実装
+          throw new Error();
+      }
     });
-  });
+
+    STOP_SIGNALS.forEach((signal) => {
+      process.on(signal, () => {
+        logger.info(`Received ${signal}`);
+        car.cleanUp();
+      });
+    });
+  }
 }
 
-main();
+const controlelr = new KeyboardController();
+new RaspberryPiCarApplication(controlelr).run();
