@@ -1,4 +1,4 @@
-const car = require("./src/car");
+const Motor = require("./src/motor").Motor;
 
 // 何秒ごとに処理するか
 const INTERVAL_SEC = 1;
@@ -18,7 +18,7 @@ const STOP_SIGNALS = ["SIGTERM", "SIGINT"];
 
 function main() {
   const motors = Object.values(PINS).map((pin) => {
-    return new car.Motor(pin);
+    return new Motor(pin);
   });
 
   const intervalObject = setInterval(() => {
