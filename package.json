@@ -5,13 +5,19 @@
   "repository": "https://github.com/os1ma/raspberrypi-car.git",
   "author": "Yuki Oshima <39944763+os1ma@users.noreply.github.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "keypress": "^0.2.1",
     "rpio": "^2.4.2"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "@types/keypress": "^2.0.30",
     "@types/rpio": "^2.4.1",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.6",
     "typescript": "^4.2.4"
   }
 }

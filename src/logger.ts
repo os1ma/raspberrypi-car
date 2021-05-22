@@ -5,8 +5,8 @@ const logger = {
 };
 
 function log(logLevel: string, message: string) {
-  const now = new Date();
-  console.log(`${now} [${logLevel}] ${message}`);
+  const nowStr = new Date(Date.now()).toISOString();
+  console.log(`${nowStr} [${logLevel}] ${message}`);
 }
 
 export default logger;
