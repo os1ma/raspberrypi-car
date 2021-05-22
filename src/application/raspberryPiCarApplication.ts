@@ -1,5 +1,5 @@
-import Car from "../car";
-import { CarFactory } from "../carFactory";
+import Car from "../domain/car";
+import { CarFactory } from "../domain/carFactory";
 
 export default class RaspberryPiCarApplication {
   private car: Car;

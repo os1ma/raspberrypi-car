@@ -1,7 +1,7 @@
-import { DummyMotorCarFactory } from "./carFactory";
-import { KeyboardController } from "./presentation/keyboardController";
-import logger from "./logger";
 import RaspberryPiCarApplication from "./application/raspberryPiCarApplication";
+import DummyMotorCarFactory from "./infrastructure/dummy/dummyMotorCarFactory";
+import logger from "./logger";
+import { KeyboardController } from "./presentation/keyboardController";
 
 const controlelr = new KeyboardController();
 const carFactory = new DummyMotorCarFactory();

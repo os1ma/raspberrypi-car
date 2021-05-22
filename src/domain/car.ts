@@ -1,11 +1,11 @@
-import PWMMotor from "./motor";
+import Motor from "./motor";
 
 export default class Car {
   constructor(
-    private frontRightMotor: PWMMotor,
-    private frontLeftMotor: PWMMotor,
-    private backRightMotor: PWMMotor,
-    private backLeftMotor: PWMMotor
+    private frontRightMotor: Motor,
+    private frontLeftMotor: Motor,
+    private backRightMotor: Motor,
+    private backLeftMotor: Motor
   ) {}
 
   goStraight() {
@@ -44,17 +44,17 @@ export default class Car {
     });
   }
 
-  private execRightMotor(f: (motor: PWMMotor) => void) {
+  private execRightMotor(f: (motor: Motor) => void) {
     f(this.frontRightMotor);
     f(this.backRightMotor);
   }
 
-  private execLeftMotor(f: (motor: PWMMotor) => void) {
+  private execLeftMotor(f: (motor: Motor) => void) {
     f(this.frontLeftMotor);
     f(this.backLeftMotor);
   }
 
-  private execAllMotor(f: (motor: PWMMotor) => void) {
+  private execAllMotor(f: (motor: Motor) => void) {
     this.execRightMotor(f);
     this.execLeftMotor(f);
   }
