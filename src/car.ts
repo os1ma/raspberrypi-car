@@ -1,55 +1,61 @@
 import Motor from "./motor";
 
 export default class Car {
-  private frontRightMotor: Motor;
-  private frontLeftMotor: Motor;
-  private backRightMotor: Motor;
-  private backLeftMotor: Motor;
-
   constructor(
-    frontRightMotor: Motor,
-    frontLeftMotor: Motor,
-    backRightMotor: Motor,
-    backLeftMotor: Motor
-  ) {
-    this.frontRightMotor = frontRightMotor;
-    this.frontLeftMotor = frontLeftMotor;
-    this.backRightMotor = backRightMotor;
-    this.backLeftMotor = backLeftMotor;
-  }
+    private frontRightMotor: Motor,
+    private frontLeftMotor: Motor,
+    private backRightMotor: Motor,
+    private backLeftMotor: Motor
+  ) {}
 
   goStraight() {
-    this.frontRightMotor.changeToTopSpeed();
-    this.frontLeftMotor.changeToTopSpeed();
-    this.backRightMotor.changeToTopSpeed();
-    this.backLeftMotor.changeToTopSpeed();
+    this.execAllMotor((motor) => {
+      motor.changeToTopSpeed();
+    });
   }
 
   goRight() {
-    this.frontRightMotor.changeToTopSpeed();
-    this.frontLeftMotor.changeToMiddleSpeed();
-    this.backRightMotor.changeToTopSpeed();
-    this.backLeftMotor.changeToMiddleSpeed();
+    this.execRightMotor((motor) => {
+      motor.changeToTopSpeed();
+    });
+    this.execLeftMotor((motor) => {
+      motor.changeToMiddleSpeed();
+    });
   }
 
   goLeft() {
-    this.frontRightMotor.changeToMiddleSpeed();
-    this.frontLeftMotor.changeToTopSpeed();
-    this.backRightMotor.changeToMiddleSpeed();
-    this.backLeftMotor.changeToTopSpeed();
+    this.execRightMotor((motor) => {
+      motor.changeToMiddleSpeed();
+    });
+    this.execLeftMotor((motor) => {
+      motor.changeToTopSpeed();
+    });
   }
 
   stop() {
-    this.frontRightMotor.stop();
-    this.frontLeftMotor.stop();
-    this.backRightMotor.stop();
-    this.backLeftMotor.stop();
+    this.execAllMotor((motor) => {
+      motor.stop();
+    });
   }
 
   cleanUp() {
-    this.frontRightMotor.cleanUp();
-    this.frontLeftMotor.cleanUp();
-    this.backRightMotor.cleanUp();
-    this.backLeftMotor.cleanUp();
+    this.execAllMotor((motor) => {
+      motor.cleanUp();
+    });
+  }
+
+  private execRightMotor(f: (motor: Motor) => void) {
+    f(this.frontRightMotor);
+    f(this.backRightMotor);
+  }
+
+  private execLeftMotor(f: (motor: Motor) => void) {
+    f(this.frontLeftMotor);
+    f(this.backLeftMotor);
+  }
+
+  private execAllMotor(f: (motor: Motor) => void) {
+    this.execRightMotor(f);
+    this.execLeftMotor(f);
   }
 }

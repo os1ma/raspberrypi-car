@@ -12,11 +12,9 @@ const ACCELERATION_STOP_COUNT = 4;
 const CLOCK_DIVIDER = 8;
 
 export default class Motor {
-  protected pin: number;
   protected pwmValue: number;
 
-  constructor(pin: number) {
-    this.pin = pin;
+  constructor(protected pin: number) {
     this.pwmValue = 0;
 
     this.initialize();
