@@ -7,7 +7,7 @@ import {
 import logger from "../logger";
 
 export default class KeyboardController implements ControllerPort {
-  enable(onInput: (command: ControllerCommand) => void) {
+  enable(send: (command: ControllerCommand) => void) {
     keypress(process.stdin);
 
     process.stdin.on("keypress", (ch, key) => {
@@ -20,21 +20,21 @@ export default class KeyboardController implements ControllerPort {
       // Ctrl + C
       if (key.ctrl && key.name == "c") {
         logger.info("Ctrl + C handling...");
-        onInput(ControllerCommand.CleanUp);
+        send(ControllerCommand.CleanUp);
       }
 
       switch (key.name) {
         case "up":
-          onInput(ControllerCommand.GoStraight);
+          send(ControllerCommand.GoStraight);
           break;
         case "down":
-          onInput(ControllerCommand.Stop);
+          send(ControllerCommand.Stop);
           break;
         case "right":
-          onInput(ControllerCommand.GoRight);
+          send(ControllerCommand.GoRight);
           break;
         case "left":
-          onInput(ControllerCommand.GoLeft);
+          send(ControllerCommand.GoLeft);
           break;
       }
     });

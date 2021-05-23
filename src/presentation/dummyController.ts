@@ -5,7 +5,7 @@ import {
 import logger from "../logger";
 
 export default class DummyController implements ControllerPort {
-  enable(onInput: (command: ControllerCommand) => void) {
+  enable(send: (command: ControllerCommand) => void) {
     logger.info("DummyController enabled...");
   }
 }

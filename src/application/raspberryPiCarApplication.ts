@@ -40,7 +40,7 @@ export default class RaspberryPiCarApplication {
 // このアプリケーションが要求するコントローラの定義
 
 export interface ControllerPort {
-  enable(onInput: (command: ControllerCommand) => void): void;
+  enable(send: (command: ControllerCommand) => void): void;
 }
 
 export enum ControllerCommand {
