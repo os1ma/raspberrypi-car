@@ -21,6 +21,7 @@ export default class KeyboardController implements ControllerPort {
       if (key.ctrl && key.name == "c") {
         logger.info("Ctrl + C handling...");
         send(ControllerCommand.CleanUp);
+        process.stdin.pause();
       }
 
       switch (key.name) {

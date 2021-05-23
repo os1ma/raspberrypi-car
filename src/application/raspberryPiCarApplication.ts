@@ -1,5 +1,6 @@
 import Car from "../domain/car";
 import CarFactory from "../domain/carFactory";
+import logger from "../logger";
 
 export default class RaspberryPiCarApplication {
   private car: Car;
@@ -25,7 +26,7 @@ export default class RaspberryPiCarApplication {
           break;
         case ControllerCommand.CleanUp:
           this.cleanUp();
-          process.exit();
+          break;
         default:
           throw new Error(`Unexpected command: ${command}`);
       }
@@ -33,6 +34,7 @@ export default class RaspberryPiCarApplication {
   }
 
   cleanUp() {
+    logger.info("Application cleanUp...");
     this.car.cleanUp();
   }
 }
