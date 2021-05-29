@@ -1,5 +1,5 @@
-import Car from "./car";
+import Car from './car'
 
 export default interface CarFactory {
-  create(): Car;
+  create(): Car
 }

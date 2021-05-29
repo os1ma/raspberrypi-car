@@ -4,7 +4,7 @@ import PWMMotor from './pwmMotor'
 
 const PINS = {
   rightPin: 12,
-  leftPin: 32
+  leftPin: 33
 }
 
 export default class PWMMotorCarFactory implements CarFactory {

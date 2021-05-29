@@ -1,4 +1,4 @@
-import Motor from "./motor";
+import Motor from './motor'
 
 export default class Car {
   constructor(
@@ -10,52 +10,52 @@ export default class Car {
 
   goStraight() {
     this.execAllMotor((motor) => {
-      motor.changeToTopSpeed();
-    });
+      motor.changeToTopSpeed()
+    })
   }
 
   goRight() {
     this.execRightMotor((motor) => {
-      motor.changeToTopSpeed();
-    });
+      motor.changeToMiddleSpeed()
+    })
     this.execLeftMotor((motor) => {
-      motor.changeToMiddleSpeed();
-    });
+      motor.changeToTopSpeed()
+    })
   }
 
   goLeft() {
     this.execRightMotor((motor) => {
-      motor.changeToMiddleSpeed();
-    });
+      motor.changeToTopSpeed()
+    })
     this.execLeftMotor((motor) => {
-      motor.changeToTopSpeed();
-    });
+      motor.changeToMiddleSpeed()
+    })
   }
 
   stop() {
     this.execAllMotor((motor) => {
-      motor.stop();
-    });
+      motor.stop()
+    })
   }
 
   cleanUp() {
     this.execAllMotor((motor) => {
-      motor.cleanUp();
-    });
+      motor.cleanUp()
+    })
   }
 
   private execRightMotor(f: (motor: Motor) => void) {
-    f(this.frontRightMotor);
-    f(this.backRightMotor);
+    f(this.frontRightMotor)
+    f(this.backRightMotor)
   }
 
   private execLeftMotor(f: (motor: Motor) => void) {
-    f(this.frontLeftMotor);
-    f(this.backLeftMotor);
+    f(this.frontLeftMotor)
+    f(this.backLeftMotor)
   }
 
   private execAllMotor(f: (motor: Motor) => void) {
-    this.execRightMotor(f);
-    this.execLeftMotor(f);
+    this.execRightMotor(f)
+    this.execLeftMotor(f)
   }
 }

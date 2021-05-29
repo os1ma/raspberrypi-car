@@ -1,6 +1,6 @@
-import Car from "../../domain/car";
-import CarFactory from "../../domain/carFactory";
-import DummyMotor from "./dummyMotor";
+import Car from '../../domain/car'
+import CarFactory from '../../domain/carFactory'
+import DummyMotor from './dummyMotor'
 
 export default class DummyMotorCarFactory implements CarFactory {
   create() {
@@ -9,6 +9,6 @@ export default class DummyMotorCarFactory implements CarFactory {
       new DummyMotor(),
       new DummyMotor(),
       new DummyMotor()
-    );
+    )
   }
 }
