@@ -3,8 +3,8 @@ import CarFactory from '../../domain/carFactory'
 import PWMMotor from './pwmMotor'
 
 const PINS = {
-  rightPin: 12,
-  leftPin: 33
+  rightPin: 33,
+  leftPin: 12
 }
 
 export default class PWMMotorCarFactory implements CarFactory {
