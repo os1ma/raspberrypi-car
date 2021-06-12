@@ -10,13 +10,15 @@
     <div class="wrapper">
       <h1>ラズパイカーコントローラ</h1>
       <div class="buttons">
-        <button>↑</button>
+        <button id="up">↑</button>
         <div>
-          <button>←</button>
-          <button>STOP</button>
-          <button>→</button>
+          <button id="left">←</button>
+          <button id="stop">STOP</button>
+          <button id="right">→</button>
         </div>
       </div>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./main.js"></script>
   </body>
 </html>

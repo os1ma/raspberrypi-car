@@ -8,4 +8,8 @@ export default class DummyController implements ControllerPort {
   enable(send: (command: ControllerCommand) => void) {
     logger.info('DummyController enabled...')
   }
+
+  cleanUp() {
+    logger.info('DummyController cleanUp...')
+  }
 }

@@ -43,4 +43,9 @@ export default class KeyboardController implements ControllerPort {
     process.stdin.setRawMode(true)
     process.stdin.resume()
   }
+
+  cleanUp() {
+    logger.info('KeyboardController cleanUp...')
+    // Do nothing
+  }
 }

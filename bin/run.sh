@@ -11,4 +11,4 @@ readonly PROJECT_HOME="${SCRIPT_DIR}/.."
 cd "${PROJECT_HOME}"
 rm -rf dist
 yarn tsc
-sudo node dist/keyboardCarApplication.js
+sudo node dist/webSocketCarApplication.js

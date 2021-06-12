@@ -35,6 +35,7 @@ export default class RaspberryPiCarApplication {
 
   cleanUp() {
     logger.info('Application cleanUp...')
+    this.controller.cleanUp()
     this.car.cleanUp()
   }
 }
@@ -43,6 +44,7 @@ export default class RaspberryPiCarApplication {
 
 export interface ControllerPort {
   enable(send: (command: ControllerCommand) => void): void
+  cleanUp(): void
 }
 
 export enum ControllerCommand {
