@@ -1,8 +1,8 @@
 import {
   ControllerCommand,
   ControllerPort
-} from '../application/raspberryPiCarApplication'
-import logger from '../logger'
+} from '../../application/raspberryPiCarApplication'
+import logger from '../../logger'
 
 export default class DummyController implements ControllerPort {
   enable(send: (command: ControllerCommand) => void) {

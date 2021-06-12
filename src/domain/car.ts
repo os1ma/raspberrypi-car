@@ -16,7 +16,7 @@ export default class Car {
 
   goRight() {
     this.execRightMotor((motor) => {
-      motor.changeToMiddleSpeed()
+      motor.stop()
     })
     this.execLeftMotor((motor) => {
       motor.changeToTopSpeed()
@@ -28,7 +28,7 @@ export default class Car {
       motor.changeToTopSpeed()
     })
     this.execLeftMotor((motor) => {
-      motor.changeToMiddleSpeed()
+      motor.stop()
     })
   }
 

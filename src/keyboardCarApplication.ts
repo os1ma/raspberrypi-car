@@ -1,7 +1,7 @@
 import RaspberryPiCarApplication from './application/raspberryPiCarApplication'
 import PWMMotorCarFactory from './infrastructure/rpio/pwmMotorCarFactory'
 import logger from './logger'
-import KeyboardController from './presentation/keyboardController'
+import KeyboardController from './presentation/keyboard/keyboardController'
 
 const STOP_SIGNALS = ['SIGTERM', 'SIGINT']
 

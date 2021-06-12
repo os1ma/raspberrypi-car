@@ -3,8 +3,8 @@ import keypress from 'keypress'
 import {
   ControllerCommand,
   ControllerPort
-} from '../application/raspberryPiCarApplication'
-import logger from '../logger'
+} from '../../application/raspberryPiCarApplication'
+import logger from '../../logger'
 
 export default class KeyboardController implements ControllerPort {
   enable(send: (command: ControllerCommand) => void) {
