@@ -1,4 +1,5 @@
 import RaspberryPiCarApplication from './application/raspberryPiCarApplication'
+import GpioLed from './infrastructure/rpio/gpioLed'
 import PWMMotorCarFactory from './infrastructure/rpio/pwmMotorCarFactory'
 import logger from './logger'
 import KeyboardController from './presentation/keyboard/keyboardController'
@@ -27,8 +28,9 @@ const STOP_SIGNALS = ['SIGTERM', 'SIGINT']
 
 const controller = initializeController()
 const carFactory = new PWMMotorCarFactory()
+const led = new GpioLed(7)
 
-const app = new RaspberryPiCarApplication(controller, carFactory)
+const app = new RaspberryPiCarApplication(controller, carFactory, led)
 app.run()
 
 STOP_SIGNALS.forEach((signal) => {

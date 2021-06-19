@@ -1,11 +1,16 @@
 import Car from '../domain/car'
 import CarFactory from '../domain/carFactory'
+import Led from '../domain/led'
 import logger from '../logger'
 
 export default class RaspberryPiCarApplication {
   private car: Car
 
-  constructor(private controller: ControllerPort, carFactory: CarFactory) {
+  constructor(
+    private controller: ControllerPort,
+    carFactory: CarFactory,
+    private led: Led
+  ) {
     this.car = carFactory.create()
   }
 
@@ -31,12 +36,14 @@ export default class RaspberryPiCarApplication {
           throw new Error(`Unexpected command: ${command}`)
       }
     })
+    this.led.shine()
   }
 
   cleanUp() {
     logger.info('Application cleanUp...')
     this.controller.cleanUp()
     this.car.cleanUp()
+    this.led.cleanUp()
   }
 }
 
